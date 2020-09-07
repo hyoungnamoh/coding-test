@@ -6,48 +6,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <script>
-    function solution(s, n) {
+    function solution(participant, completion) {
       let answer = '';
-      for (let i = 0; i <= s.length - 1; i++) {
+      for (let i = 0; i < participant; i++) {
+        for (let j = 0; j < completion; j++) {
 
-        let isMini;
-        let ascii = s.charCodeAt(i);
-        // console.log('최대 대문자 넘는 경우', ascii, n, ascii + n % 26);
-        if (s.charCodeAt(i) !== 32) {
-          if (ascii > 96 && ascii < 123) {
-            isMini = true;
-          } else {
-            isMini = false;
-          }
-          if (isMini) {
-            // console.log(ascii);
-            if (n > 26) {
-              ascii = ascii + (n % 26);
-            } else if ((ascii + n) > 122) {
-              ascii = 96 + ascii + n - 122;
-            } else {
-              ascii = ascii + n;
-            }
-          } else {
-            if (n > 26) {
-              ascii = ascii + (n % 26);
-            } else if ((ascii + n) > 90) {
-              ascii = 64 + ascii + n - 90;
-            } else {
-              ascii = ascii + n;
-            }
-          }
         }
-        console.log('파싱된 후 ', ascii);
-        // console.log(ascii + n);
-        // console.log(ascii, i);
-        const char = String.fromCharCode(ascii);
-        answer += char;
       }
-      console.log(answer);
-      return answer;
-    }
-    solution('abcd', 3);
+      //   for (let i = 0; i < completion.length; i++) {
+      //     const removeIndex = participant.indexOf(completion[i]);
+      //     console.log(removeIndex);
+      //     if (removeIndex) {
+      //       answer = participant[removeIndex];
+      //       break;
+      //     }
+      //   }
+      //   console.log(answer);
+      //   return (participant[0])
+
+      // }
+      solution(['gudska', 'gudwls', 'gPfl', 'gPfl'], ['gudska', 'gPfl']);
   </script>
 </head>
 
