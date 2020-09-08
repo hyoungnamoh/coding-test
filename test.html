@@ -8,24 +8,19 @@
   <script>
     function solution(participant, completion) {
       let answer = '';
-      for (let i = 0; i < participant; i++) {
-        for (let j = 0; j < completion; j++) {
-
+      const sortedParticipant = participant.sort();
+      const sortedCompletion = completion.sort();
+      for (let index = 0; index < sortedParticipant.length; index++) {
+        const pElement = sortedParticipant[index];
+        const cElement = sortedCompletion[index];
+        if (pElement !== cElement) {
+          answer = pElement;
+          break;
         }
       }
-      //   for (let i = 0; i < completion.length; i++) {
-      //     const removeIndex = participant.indexOf(completion[i]);
-      //     console.log(removeIndex);
-      //     if (removeIndex) {
-      //       answer = participant[removeIndex];
-      //       break;
-      //     }
-      //   }
-      //   console.log(answer);
-      //   return (participant[0])
-
-      // }
-      solution(['gudska', 'gudwls', 'gPfl', 'gPfl'], ['gudska', 'gPfl']);
+      return answer;
+    }
+    solution(['gudska', 'gudwls', 'gPfl'], ['gudska', 'gPfl']);
   </script>
 </head>
 
