@@ -6,21 +6,58 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <script>
-    function solution(participant, completion) {
-      let answer = '';
-      const sortedParticipant = participant.sort();
-      const sortedCompletion = completion.sort();
-      for (let index = 0; index < sortedParticipant.length; index++) {
-        const pElement = sortedParticipant[index];
-        const cElement = sortedCompletion[index];
-        if (pElement !== cElement) {
-          answer = pElement;
-          break;
+    function solution(answers) {
+      const length = answers.length;
+      const supoja2Pattern = [1, 3, 4, 5];
+      const supoja3Pattern = [3, 1, 2, 4, 5];
+      let answer = [];
+      let supoja1 = 0;
+      let supoja2 = 0;
+      let supoja3 = 0;
+      let i = 0;
+      let num1 = 1;
+      let supoja2PatternIndex = 0;
+      let supoja3PatternIndex = 0;
+
+      let isOdd = true;
+
+      while (i < length) {
+        //1번
+        answers[i] === num1 && supoja1++;
+        num1++;
+        if (num1 > 5) {
+          num1 = 1;
         }
+
+        //2번
+        isOdd ? answers[i] === 2 && supoja2++ : answers[i] === supoja2Pattern[supoja2PatternIndex] && supoja2++;
+        !isOdd && supoja2PatternIndex++;
+        isOdd = !isOdd;
+        // console.log(supoja2PatternIndex, isOdd);
+
+        if (supoja2PatternIndex > 3) {
+          supoja2PatternIndex = 0;
+        }
+
+        //3번
+        answers[i] === supoja3Pattern[supoja3PatternIndex] && supoja3++ && supoja3++;
+
+
+        if (supoja3PatternIndex > 4) {
+          supoja3PatternIndex = 0;
+        }
+        
+
+
+        i++;
       }
-      return answer;
+
+      console.log(supoja2);
     }
-    solution(['gudska', 'gudwls', 'gPfl'], ['gudska', 'gPfl']);
+    // 1번 수포자가 찍는 방식: 1, 2, 3, 4, 5, 1, 2, 3, 4, 5, ...
+    // 2번 수포자가 찍는 방식: 2, 1, 2, 3, 2, 4, 2, 5, 2, 1, 2, 3, 2, 4, 2, 5, ...
+    // 3번 수포자가 찍는 방식: 3, 3, 1, 1, 2, 2, 4, 4, 5, 5, 3, 3, 1, 1, 2, 2, 4, 4, 5, 5, ...
+    solution([1, 2, 3, 4, 5, 4, 2, 5]);
   </script>
 </head>
 
