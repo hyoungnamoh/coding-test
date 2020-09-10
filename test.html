@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <script>
-    function solution(answers) {
+    const solution = (answers) => {
       const length = answers.length;
       const supoja2Pattern = [1, 3, 4, 5];
       const supoja3Pattern = [3, 1, 2, 4, 5];
@@ -33,31 +33,33 @@
         isOdd ? answers[i] === 2 && supoja2++ : answers[i] === supoja2Pattern[supoja2PatternIndex] && supoja2++;
         !isOdd && supoja2PatternIndex++;
         isOdd = !isOdd;
-        // console.log(supoja2PatternIndex, isOdd);
-
         if (supoja2PatternIndex > 3) {
           supoja2PatternIndex = 0;
         }
 
         //3번
-        answers[i] === supoja3Pattern[supoja3PatternIndex] && supoja3++ && supoja3++;
-
-
+        answers[i] === supoja3Pattern[supoja3PatternIndex] && supoja3++;
+        if (i % 2 === 1) {
+          supoja3PatternIndex++;
+        }
         if (supoja3PatternIndex > 4) {
           supoja3PatternIndex = 0;
         }
-        
-
-
         i++;
       }
-
-      console.log(supoja2);
+      const max = Math.max(supoja1, supoja2, supoja3);
+      max === supoja1 && answer.push(1);
+      max === supoja2 && answer.push(2);
+      max === supoja3 && answer.push(3);
+      if (answer.length) {
+        return answer.sort();
+      }
+      return answer;
     }
     // 1번 수포자가 찍는 방식: 1, 2, 3, 4, 5, 1, 2, 3, 4, 5, ...
     // 2번 수포자가 찍는 방식: 2, 1, 2, 3, 2, 4, 2, 5, 2, 1, 2, 3, 2, 4, 2, 5, ...
     // 3번 수포자가 찍는 방식: 3, 3, 1, 1, 2, 2, 4, 4, 5, 5, 3, 3, 1, 1, 2, 2, 4, 4, 5, 5, ...
-    solution([1, 2, 3, 4, 5, 4, 2, 5]);
+    console.log(solution([1,3,2,4,2]));
   </script>
 </head>
 
