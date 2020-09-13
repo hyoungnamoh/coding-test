@@ -7,45 +7,39 @@
   <title>Document</title>
   <script>
     function solution(n, lost, reserve) {
-      const filteredReserve = reserve.filter((e, i) => !lost.includes(e - 1));
-      const filteredLost = lost.filter((e, i) => !reserve.includes(e + 1));
-      console.log(filteredReserve);
-      console.log(filteredLost);
-      if (!filteredReserve.length) {
-        return n - filteredLost.length;
-      }
-      const filteredReserve2 = filteredReserve.filter((e, i) => !filteredLost.includes(e));
-      const filteredLost2 = filteredLost.filter((e, i) => !filteredReserve.includes(e));
-      console.log(filteredReserve2);
-      console.log(filteredLost2);
-      if (!filteredReserve2.length) {
-        return n - filteredLost2.length;
-      }
-      const filteredReserve3 = filteredReserve2.filter((e, i) => !filteredLost2.includes(e + 1));
-      const filteredLost3 = filteredLost2.filter((e, i) => !filteredReserve2.includes(e - 1));
-      console.log(filteredReserve3);
-      console.log(filteredLost3);
-      return n - filteredLost3.length;
-
-      // console.log(fileredReserve);
-      // console.log(fileredLost);
-      // for (let i = reserve.length - 1; i > -1; i--) {
-      //   const reserving = lost.find(e => {
-      //     return e === reserve[i] - 1 || e === reserve[i] || e === reserve[i] + 1
-      //   });
-      //   // console.log(i, reserving);
-      //   if (reserving) {
-      //     console.log(lost.findIndex(e => reserving === e));
-      //     reserve.splice(i, 1);
-      //     lost.splice(lost.findIndex(e => reserving === e), 1);
-      //   };
+      let copyResrve = [];
+      let copyLost = [];
+      reserve.forEach(element => {
+        copyResrve.push(element);
+      });
+      lost.forEach(element => {
+        copyLost.push(element);
+      });
+      copyResrve.sort();
+      copyLost.sort();
+      reserve.map((item, index) => {
+        if (item - 1 === lost[index]) {
+          copyResrve.splice(copyResrve.findIndex(e => e === item), 1);
+          copyLost.slice(copyLost.findIndex(e => e === item - 1));
+        } else if (item === lost[index]) {
+          copyResrve.splice(copyResrve.findIndex(e => e === item), 1);
+          copyLost.slice(copyLost.findIndex(e => e === item));
+        } else if (item + 1 === lost[index]) {
+          copyResrve.splice(copyResrve.findIndex(e => e === item), 1);
+          copyLost.slice(copyLost.findIndex(e => e === item + 1));
+        }
+      });
+      console.log(copyResrve);
+      // if (lost.length > 0) {
+      //   return n - lost.length + copyResrve;
+      // } else {
+      //   return n + lost.length + copyResrve;
       // }
-      // return n - lost.length;
     }
     console.log(solution(
       10,
-      [1, 2, 3, 4],
-      [1, 2, 3, 4]
+      [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      [1, 2, 4, 6, 8, 9]
     ));
   </script>
 </head>
