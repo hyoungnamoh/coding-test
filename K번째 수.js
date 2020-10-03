@@ -1,3 +1,13 @@
+const solution = (array, commands) => {
+  let returnArray = [];
+  commands.map((item, index) => {
+    let copyArray = array.slice();
+    returnArray.push(copyArray.slice(item[0] - 1, item[1]).sort(function (a, b) {
+      return a - b;
+    })[item[2] - 1]);
+  });
+  return returnArray;
+}
 // 문제 설명
 // 배열 array의 i번째 숫자부터 j번째 숫자까지 자르고 정렬했을 때, k번째에 있는 수를 구하려 합니다.
 

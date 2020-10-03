@@ -6,17 +6,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <script>
-    function solution(array, commands) {
-      let returnArray = [];
-      commands.map((item, index) => {
-        let copyArray = array.slice();
-        returnArray.push(copyArray.slice(item[0] - 1, item[1]).sort(function (a, b) {
-          return a - b;
-        })[item[2] - 1]);
-      });
-      return returnArray;
+    function solution(a, b) {
+      const lastDay = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+      const week = ['FRI', 'SAT', 'SUN', 'MON', 'TUE', 'WED', 'THU'];
+      let totalDay = -1;
+      for (let i = 0; i < a - 1; i++) {
+        totalDay += lastDay[i];
+      }
+      totalDay += b;
+      const remainder = totalDay % 7;
+      console.log(week[remainder]);
+      return week[remainder];
     }
-    console.log(solution([1, 5, 2, 6, 3, 7, 4], [[2, 5, 3], [4, 4, 1], [1, 7, 3]]));
+    solution(5, 30);
   </script>
 </head>
 
