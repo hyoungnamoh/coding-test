@@ -6,24 +6,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <script>
-    function solution(a, b) {
-      const lastDay = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-      const week = ['FRI', 'SAT', 'SUN', 'MON', 'TUE', 'WED', 'THU'];
-      let totalDay = -1;
-      for (let i = 0; i < a - 1; i++) {
-        totalDay += lastDay[i];
+    const solution = (s) => {
+      let answer = '';
+      if (s.length % 2 === 0) {
+        const preStr = s[s.length / 2 - 1];
+        const nextStr = s[s.length / 2];
+        answer = preStr + nextStr;
+      } else {
+        answer = s[Math.round(s.length / 2) - 1];
       }
-      totalDay += b;
-      const remainder = totalDay % 7;
-      console.log(week[remainder]);
-      return week[remainder];
+      return answer;
     }
-    solution(5, 30);
+    solution('asdsadasddd');
   </script>
 </head>
 
 <body>
-
 </body>
 
 </html>
