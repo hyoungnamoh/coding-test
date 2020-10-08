@@ -6,13 +6,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <script>
-    const solution = (arr, divisor) => {
-      const answer = arr.filter(e => e % divisor === 0).length === 0 ? [-1] : arr.filter(e => e % divisor === 0).sort(function compareNumbers(a, b) {
-        return a - b;
-      });
+    const solution = (a, b) => {
+      let answer = 0;
+      let greater;
+      let smaller;
+      if (a === b) {
+        return a;
+      }
+      if (a < b) {
+        greater = b;
+        smaller = a;
+      } else {
+        greater = a;
+        smaller = b;
+      }
+      for (let i = smaller; i <= greater; i++) {
+        answer += i;
+      }
+      console.log(answer);
       return answer;
     }
-    solution([10, 5, 9, 7], 5);
+    solution(4, 4);
   </script>
 </head>
 
