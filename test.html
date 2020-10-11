@@ -6,19 +6,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <script>
-    const solution = (strings, n) => {
-      const answer = strings.sort((a, b) => {
-        if (a[n] > b[n]) {
-          return 1;
-        }
-        if (a[n] < b[n]) {
-          return -1;
-        }
-        return a > b ? 1 : -1;
-      });
-      return answer;
+    const solution = (str) => {
+      let yCount = 0;
+      let pCount = 0;
+      Array.from(str.toLowerCase()).map(e => e === 'y' ? yCount++ : e === 'p' ? pCount++ : null);
+      return yCount === pCount;
     }
-    solution(['abcd', 'bbcd', 'dbcd', 'cdad'], 2);
+    solution('PpYy');
   </script>
 </head>
 
