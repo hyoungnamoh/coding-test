@@ -7,12 +7,17 @@
   <title>Document</title>
   <script>
     const solution = (str) => {
-      let yCount = 0;
-      let pCount = 0;
-      Array.from(str.toLowerCase()).map(e => e === 'y' ? yCount++ : e === 'p' ? pCount++ : null);
-      return yCount === pCount;
+      return Array.from(str).sort((a, b) => {
+        if (a > b) {
+          return -1;
+        }
+        if (a < b) {
+          return 1;
+        }
+        return 0;
+      }).join('');
     }
-    solution('PpYy');
+    solution('Zbcdefg');
   </script>
 </head>
 
