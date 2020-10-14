@@ -6,18 +6,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <script>
-    const solution = (str) => {
-      return Array.from(str).sort((a, b) => {
-        if (a > b) {
-          return -1;
-        }
-        if (a < b) {
-          return 1;
-        }
-        return 0;
-      }).join('');
+    const solution = (s) => {
+      if (!s) {
+        return false;
+      }
+      return !s.split('').map(e => e.charCodeAt() > 47 && e.charCodeAt() < 58).includes(false) && (s.trim().replace(/(\s*)/g, '').length === 4 || s.trim().replace(/(\s*)/g, '').length === 6);
     }
-    solution('Zbcdefg');
+    solution('123456');
   </script>
 </head>
 
