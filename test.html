@@ -6,13 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <script>
-    const solution = (s) => {
-      if (!s) {
-        return false;
-      }
-      return !s.split('').map(e => e.charCodeAt() > 47 && e.charCodeAt() < 58).includes(false) && (s.trim().replace(/(\s*)/g, '').length === 4 || s.trim().replace(/(\s*)/g, '').length === 6);
+    const solution = (seoul) => {
+      return `김서방은 ${seoul.findIndex(e => e === 'Kim')}에 있다`;
     }
-    solution('123456');
+    solution(['Jane', 'Kim']);
   </script>
 </head>
 
