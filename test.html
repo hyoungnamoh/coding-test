@@ -6,19 +6,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <script>
-    const solution = (n) => {
-      if (n < 1) {
-        return 0;
-      }
-      let num = 2;
-      let sum = 0;
-      while (n >= num) {
-        n % num === 0 ? sum += num : null;
-        num++;
-      }
-      return sum + 1;
+    const solution = (s) => {
+      const stringArray = s.split(' ');
+      const answer = stringArray.map(arr => {
+        return arr.split('').map((s, i) => {
+          if (i % 2 === 0) {
+            return s.toUpperCase();
+          } else {
+            return s.toLowerCase();
+          }
+        }).join('');
+      }).join(' ');
+      return answer;
     }
-    solution(10);
+    solution('try hello world');
   </script>
 </head>
 
