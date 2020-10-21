@@ -6,20 +6,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <script>
-    const solution = (s) => {
-      const stringArray = s.split(' ');
-      const answer = stringArray.map(arr => {
-        return arr.split('').map((s, i) => {
-          if (i % 2 === 0) {
-            return s.toUpperCase();
-          } else {
-            return s.toLowerCase();
-          }
-        }).join('');
-      }).join(' ');
-      return answer;
+    const solution = (n) => {
+      let sum = 0;
+      ('' + n).split('').map(e => sum += +e)
+      return sum;
     }
-    solution('try hello world');
+    solution(1234);
   </script>
 </head>
 
