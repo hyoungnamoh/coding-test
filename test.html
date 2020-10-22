@@ -7,9 +7,7 @@
   <title>Document</title>
   <script>
     const solution = (n) => {
-      let sum = 0;
-      ('' + n).split('').map(e => sum += +e)
-      return sum;
+      return ('' + n).split('').reverse().map(e => +e);
     }
     solution(1234);
   </script>
