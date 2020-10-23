@@ -7,9 +7,9 @@
   <title>Document</title>
   <script>
     const solution = (n) => {
-      return ('' + n).split('').reverse().map(e => +e);
+      return Number((n + '').split('').sort((a, b) => b - a).join(''));
     }
-    solution(1234);
+    solution(51232);
   </script>
 </head>
 
