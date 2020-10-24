@@ -6,16 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <script>
-    const solution = (n) => {
-      // if (Math.sqrt(n) % 1 !== 0) {
-      //   return -1;
-      // } else {
-      //   return Math.pow(n + 1);
-      // }
-      return Number.isInteger(Math.sqrt(n)) ? Math.pow(Math.sqrt(n) + 1, 2) : -1;
-      // return Number((n + '').split('').sort((a, b) => b - a).join(''));
+    const solution = (arr) => {
+      return arr.filter(e => e !== Math.min(...arr)).length < 2 ? [-1] : arr.filter(e => e !== Math.min(...arr));
     }
-    solution(4);
+    console.log(solution([1, 2, 3, 4, 5, 1, 2]));
   </script>
 </head>
 
