@@ -7,9 +7,15 @@
   <title>Document</title>
   <script>
     const solution = (n) => {
-      return Number((n + '').split('').sort((a, b) => b - a).join(''));
+      // if (Math.sqrt(n) % 1 !== 0) {
+      //   return -1;
+      // } else {
+      //   return Math.pow(n + 1);
+      // }
+      return Number.isInteger(Math.sqrt(n)) ? Math.pow(Math.sqrt(n) + 1, 2) : -1;
+      // return Number((n + '').split('').sort((a, b) => b - a).join(''));
     }
-    solution(51232);
+    solution(4);
   </script>
 </head>
 
