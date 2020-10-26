@@ -6,10 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <script>
-    const solution = (arr) => {
-      return arr.filter(e => e !== Math.min(...arr)).length < 2 ? [-1] : arr.filter(e => e !== Math.min(...arr));
+    const solution = (num) => {
+      return num % 2 === 0 ? 'Even' : 'Odd';
     }
-    console.log(solution([1, 2, 3, 4, 5, 1, 2]));
+    console.log(solution(0));
   </script>
 </head>
 
