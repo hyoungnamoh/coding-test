@@ -6,10 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <script>
-    const solution = (num) => {
-      return num % 2 === 0 ? 'Even' : 'Odd';
+    const solution = (arr) => {
+      return arr.reduce((accumulator, currentValue) => accumulator + currentValue) / arr.length;
     }
-    console.log(solution(0));
+    console.log(solution([-10, 100, 1]));
   </script>
 </head>
 
