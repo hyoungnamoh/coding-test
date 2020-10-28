@@ -6,10 +6,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <script>
-    const solution = (arr) => {
-      return arr.reduce((accumulator, currentValue) => accumulator + currentValue) / arr.length;
+    const solution = (num) => {
+      let count = 0;
+      while (count < 500 && num !== 1) {
+        num = num % 2 === 0 ? num / 2 : num * 3 + 1;
+        count++;
+      }
+      return count > 499 ? -1 : count;
     }
-    console.log(solution([-10, 100, 1]));
+    console.log(solution(626331));
   </script>
 </head>
 
