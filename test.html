@@ -6,10 +6,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <script>
-    const solution = (phone_number) => {
-      return phone_number.split('').reverse().map((e, i) => i > 3 ? '*' : e).reverse().join('');
+    const solution = (arr1, arr2) => {
+      let col;
+      let row;
+      let bigger = arr1[0].length > arr2[0].length ? arr1 : arr2;
+      let smaller = arr1[0].length > arr2[0].length ? arr2 : arr1;
+      col = bigger[0].map((e, index) => bigger[0][index] + (smaller[0][index] ? smaller[0][index] : 0));
+      bigger = arr1[1].length > arr2[1].length ? arr1 : arr2;
+      smaller = arr1[1].length > arr2[1].length ? arr2 : arr1;
+      row = bigger[1].map((e, index) => bigger[1][index] + (smaller[1][index] ? smaller[1][index] : 0));
+      return [col, row];
     }
-    console.log(solution('01036423603'));
+    console.log(solution([[5, 2, 3, 4, 'd'], [3, 4, 3]], [[1], [3, 4, 3, 3]]));
   </script>
 </head>
 
