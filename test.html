@@ -6,14 +6,39 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <script>
-    const solution = (x, n) => {
-      let arr = [];
-      for(let i = 0; i < n; i++) {
-        arr.push(x * (i + 1));
+    const solution = (n, stages) => {
+      let filteredStage = stages;
+      let stage = 1;
+      let failRates = [];
+
+      for (stage; stage <= n; stage++) {
+        const remain = filteredStage.length;
+        if (filteredStage.length === 0 && remain === 0) {
+          failRates.push(1);
+        } else {
+          filteredStage = filteredStage.filter(e => {
+            return stage !== e;
+          });
+          failRates.push((remain - filteredStage.length) / remain);
+        }
       }
-      return arr;
+      let jsonArr = failRates.map((e, i) => {
+        return { key: i + 1, value: e };
+      });
+      console.log(jsonArr);
+
+      jsonArr.sort((a, b) => {
+        if (a.value < b.value) {
+          return 1;
+        }
+        if (a.value > b.value) {
+          return -1;
+        }
+        return 0;
+      });
+      return jsonArr.map(e => e.key);
     }
-    console.log(solution(-2, 5));
+    console.log(solution(50, [1, 2]));
   </script>
 </head>
 
