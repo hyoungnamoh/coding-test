@@ -10,11 +10,12 @@
       let filteredStage = stages;
       let stage = 1;
       let failRates = [];
+      const maxStage = Math.max(...stages);
 
       for (stage; stage <= n; stage++) {
         const remain = filteredStage.length;
-        if (filteredStage.length === 0 && remain === 0) {
-          failRates.push(1);
+        if (maxStage < stage) {
+          failRates.push(0);
         } else {
           filteredStage = filteredStage.filter(e => {
             return stage !== e;
@@ -25,8 +26,6 @@
       let jsonArr = failRates.map((e, i) => {
         return { key: i + 1, value: e };
       });
-      console.log(jsonArr);
-
       jsonArr.sort((a, b) => {
         if (a.value < b.value) {
           return 1;
@@ -38,7 +37,7 @@
       });
       return jsonArr.map(e => e.key);
     }
-    console.log(solution(50, [1, 2]));
+    console.log(solution(1, []));
   </script>
 </head>
 
