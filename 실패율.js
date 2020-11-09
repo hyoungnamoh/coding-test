@@ -1,3 +1,34 @@
+const solution = (n, stages) => {
+  let filteredStage = stages;
+  let stage = 1;
+  let failRates = [];
+  const maxStage = Math.max(...stages);
+
+  for (stage; stage <= n; stage++) {
+    const remain = filteredStage.length;
+    if (maxStage < stage) {
+      failRates.push(0);
+    } else {
+      filteredStage = filteredStage.filter(e => {
+        return stage !== e;
+      });
+      failRates.push((remain - filteredStage.length) / remain);
+    }
+  }
+  let jsonArr = failRates.map((e, i) => {
+    return { key: i + 1, value: e };
+  });
+  jsonArr.sort((a, b) => {
+    if (a.value < b.value) {
+      return 1;
+    }
+    if (a.value > b.value) {
+      return -1;
+    }
+    return 0;
+  });
+  return jsonArr.map(e => e.key);
+}
 // 문제 설명
 // 실패율
 // failture_rate1.png

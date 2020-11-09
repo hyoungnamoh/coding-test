@@ -6,38 +6,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <script>
-    const solution = (n, stages) => {
-      let filteredStage = stages;
-      let stage = 1;
-      let failRates = [];
-      const maxStage = Math.max(...stages);
-
-      for (stage; stage <= n; stage++) {
-        const remain = filteredStage.length;
-        if (maxStage < stage) {
-          failRates.push(0);
-        } else {
-          filteredStage = filteredStage.filter(e => {
-            return stage !== e;
-          });
-          failRates.push((remain - filteredStage.length) / remain);
+    const solution = (numbers) => {
+      let answer = [];
+      while (numbers.length !== 0) {
+        for (let i = 0; i < numbers.length; i++) {
+          if (answer.find(e => (numbers[numbers.length - 1] + numbers[i]) === e) !== 0 && !answer.find(e => (numbers[numbers.length - 1] + numbers[i]) === e)) {
+            if (numbers.length - 1 !== i) {
+              answer.push(numbers[numbers.length - 1] + numbers[i]);
+            }
+          };
         }
+        numbers.pop();
       }
-      let jsonArr = failRates.map((e, i) => {
-        return { key: i + 1, value: e };
-      });
-      jsonArr.sort((a, b) => {
-        if (a.value < b.value) {
-          return 1;
-        }
-        if (a.value > b.value) {
-          return -1;
-        }
-        return 0;
-      });
-      return jsonArr.map(e => e.key);
+      return answer.sort((a, b) => a - b);
     }
-    console.log(solution(1, []));
+    console.log(solution([0, 0, 0, 0]));
   </script>
 </head>
 
