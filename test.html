@@ -6,21 +6,47 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <script>
-    const solution = (numbers) => {
-      let answer = [];
-      while (numbers.length !== 0) {
-        for (let i = 0; i < numbers.length; i++) {
-          if (answer.find(e => (numbers[numbers.length - 1] + numbers[i]) === e) !== 0 && !answer.find(e => (numbers[numbers.length - 1] + numbers[i]) === e)) {
-            if (numbers.length - 1 !== i) {
-              answer.push(numbers[numbers.length - 1] + numbers[i]);
-            }
-          };
+    const solution = (board, moves) => {
+      let indexList = new Array(moves.length).fill(0);
+      let basket = [];
+      let answer = 0;
+      moves.forEach(element => {
+        console.log(element);
+        if (basket.length === 0) {
+          basket.push(board[indexList[element - 1]][element - 1]);
+          indexList[element - 1]++;
+        } else {
+          // console.log(basket[basket.length - 1], board[indexList[element - 1]][element - 1]);
+          if (basket[basket.length - 1] !== board[indexList[element - 1]][element - 1]) {
+            // console.log('hi');
+            basket.push(board[indexList[element - 1]][element - 1]);
+            indexList[element - 1]++;
+          } else {
+            answer++;
+            basket.pop();
+          }
         }
-        numbers.pop();
-      }
-      return answer.sort((a, b) => a - b);
+      });
+      return answer;
     }
-    console.log(solution([0, 0, 0, 0]));
+    console.log(solution([
+      [0, 0, 0, 0, 0, 1],
+      [0, 0, 1, 0, 3, 3],
+      [0, 2, 5, 0, 1, 4],
+      [4, 2, 4, 4, 2, 3],
+      [3, 5, 1, 3, 1, 2]],
+      [1, 5, 3, 5, 1, 2, 1, 4]));
+      // console.log(solution([
+      // [0, 0, 0, 0, 0],
+      // [0, 0, 1, 0, 3],
+      // [-, 2, 5, 0, 1],
+      // [-, 2, 4, 4, -],
+      // [-, -, -, -, -]],
+      // [1, 5, 3, 5, 1, 2, 1, 4]));
+      //[3, 2, 4, 5, 0, 3]
+      // board	moves	result
+      // board	moves	result
+// [[0,0,0,0,0],[0,0,1,0,3],[0,2,5,0,1],[4,2,4,4,2],[3,5,1,3,1]]	[1,5,3,5,1,2,1,4]	4
   </script>
 </head>
 
