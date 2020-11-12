@@ -1,4 +1,33 @@
-
+const solution = (board, moves) => {
+  let indexList = new Array(board[0].length).fill(0);
+  let basket = [];
+  let answer = 0;
+  for (let i = 0; i < moves.length; i++) {
+    if (indexList[moves[i] - 1] > board.length - 1) {
+      continue;
+    }
+    if (board[indexList[moves[i] - 1]][moves[i] - 1] === 0) {
+      indexList[moves[i] - 1]++;
+      i--;
+      continue;
+    }
+    if (basket.length > 0) {
+      if (basket[basket.length - 1] !== board[indexList[moves[i] - 1]][moves[i] - 1]) {
+        basket.push(board[indexList[moves[i] - 1]][moves[i] - 1]);
+      } else {
+        answer += 2;
+        basket.pop();
+      }
+    } else {
+      basket.push(board[indexList[moves[i] - 1]][moves[i] - 1]);
+    }
+    console.log(board[indexList[moves[i] - 1]][moves[i] - 1]);
+    indexList[moves[i] - 1]++;
+  }
+  // [4,3,1,1,3,2,4]
+  // 예상: [4,2,4]
+  return answer;
+}
 // 문제 설명
 // 게임개발자인 죠르디는 크레인 인형뽑기 기계를 모바일 게임으로 만들려고 합니다.
 // 죠르디는 게임의 재미를 높이기 위해 화면 구성과 규칙을 다음과 같이 게임 로직에 반영하려고 합니다.
