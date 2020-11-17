@@ -6,18 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <script>
-    const solution = (n) => {
-      let answer = 0;
-      let remains = [];
-      while (n > 2) {
-        remains.push(n % 3);
-        n = Math.floor(n / 3);
-      }
-      remains.push(n);
-      remains.reverse().map((e, i) => answer += Math.pow(3, i) * e);
-      return answer;
+    const solution = (a, b) => {
+      return a.map((e, i) => e * b[i]).reduce((accumulator, currentValue) => accumulator + currentValue);
     }
-    console.log(solution(99));
+    console.log(solution([-1, 0, 1], [1, 0, -1]));
   </script>
 </head>
 
