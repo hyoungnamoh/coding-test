@@ -6,22 +6,63 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <script>
-    const solution = (n, arr1, arr2) => {
-      const positioning = (arr, count) => {
-        for (let i = 0; i < count; i++) {
-          arr.unshift('0');
+    const solution = (dartResult) => {
+      let value = 0;
+      let powValue = 0;
+      let multValue = 0;
+      let multValueTemp = 0;
+      let arr = [];
+      let dartElement;
+      for (let i = dartResult.length - 1; i >= 0; i--) {
+        dartElement = dartResult[i];
+        if (dartResult[i] === '0' && dartResult[i - 1] === '1') {
+          dartElement = '10';
+          i--;
         }
-        return arr;
+        switch (dartElement) {
+          case '0':
+          case '1':
+          case '2':
+          case '3':
+          case '4':
+          case '5':
+          case '6':
+          case '7':
+          case '8':
+          case '9':
+          case '10':
+            {
+              value = Math.pow(Number(dartElement), powValue);
+              if (multValue < 0) {
+                value = value * multValue;
+              }
+              if (multValue > 0) {
+                value = value * multValue;
+              }
+              if (multValueTemp) {
+                value = value * multValueTemp;
+                multValueTemp = 0;
+              }
+              arr.push(value);
+              if (multValue > 0) {
+                multValueTemp = multValue;
+              }
+              value = 0;
+              powValue = 0;
+              multValue = 0;
+            }
+            break;
+          case 'S': powValue = 1; break;
+          case 'D': powValue = 2; break;
+          case 'T': powValue = 3; break;
+          case '*': multValue = 2; break;
+          case '#': multValue = -1; break;
+          default: console.log('default'); break;
+        }
       }
-      return arr1.map((e, i) => {
-        const binaryArray1 = e.toString(2).length < n ? positioning(e.toString(2).split(''), n - e.toString(2).length) : e.toString(2).split('');
-        const binaryArray2 = arr2[i].toString(2).length < n ? positioning(arr2[i].toString(2).split(''), n - arr2[i].toString(2).length) : arr2[i].toString(2).split('');
-        return binaryArray1.map((e2, j) => {
-          return e2 === '1' || binaryArray2[j] === '1' ? '#' : ' ';
-        }).join('');
-      });
+      return arr.reduce((prevValue, currentValue) => prevValue + currentValue);
     }
-    solution(5, [9, 20, 28, 18, 11], [30, 1, 21, 17, 28]);
+    solution('1S*2T*3S');
   </script>
 </head>
 
